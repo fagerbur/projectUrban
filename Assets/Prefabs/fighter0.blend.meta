@@ -10,6 +10,7 @@ ModelImporter:
     100008: Sun
     100010: Sun.001
     100012: Sun.002
+    100014: airframe
     400000: Airframe aft
     400002: Airframe front
     400004: Engine block
@@ -17,6 +18,7 @@ ModelImporter:
     400008: Sun
     400010: Sun.001
     400012: Sun.002
+    400014: airframe
     2100000: Material.004
     2100002: Material.006
     2100004: Material.005
@@ -25,12 +27,15 @@ ModelImporter:
     2300000: Airframe aft
     2300002: Airframe front
     2300004: Engine block
+    2300006: airframe
     3300000: Airframe aft
     3300002: Airframe front
     3300004: Engine block
+    3300006: airframe
     4300000: Engine block
     4300002: Airframe front
     4300004: Airframe aft
+    4300006: airframe
     10800000: Sun
     10800002: Sun.001
     10800004: Sun.002
