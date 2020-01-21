@@ -1,41 +1,26 @@
 fileFormatVersion: 2
-guid: 1acc740c9ba51e545a58d16b76ff2b24
+guid: 0ef7e81f3f36579469a1912d42803f6e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Airframe aft
-    100002: Airframe front
-    100004: Engine block
-    100006: //RootNode
-    100008: Sun
-    100010: Sun.001
-    100012: Sun.002
-    100014: airframe
-    400000: Airframe aft
-    400002: Airframe front
-    400004: Engine block
-    400006: //RootNode
-    400008: Sun
-    400010: Sun.001
-    400012: Sun.002
-    400014: airframe
-    2100000: Material.004
-    2100002: Material.006
-    2100004: Material.005
-    2100006: Material.001
-    2100008: Material
-    2300000: Airframe aft
-    2300002: Airframe front
-    2300004: Engine block
-    2300006: airframe
-    3300000: Airframe aft
-    3300002: Airframe front
-    3300004: Engine block
-    3300006: airframe
-    4300000: Engine block
-    4300002: Airframe front
-    4300004: Airframe aft
-    4300006: airframe
+    100000: airframe
+    100002: //RootNode
+    100004: Sun
+    100006: Sun.001
+    100008: Sun.002
+    400000: airframe
+    400002: //RootNode
+    400004: Sun
+    400006: Sun.001
+    400008: Sun.002
+    2100000: Material.005
+    2100002: Material.001
+    2100004: Material
+    2100006: Material.004
+    2100008: Material.006
+    2300000: airframe
+    3300000: airframe
+    4300000: airframe
     10800000: Sun
     10800002: Sun.001
     10800004: Sun.002
