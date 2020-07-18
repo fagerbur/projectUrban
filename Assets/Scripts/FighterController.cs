@@ -5,13 +5,11 @@ public class FighterController : MonoBehaviour
 {
     float mainSpeed = 100.0f;
     private float totalRun = 1.0f;
-    public GameObject fighter;
-    Vector3 currentRotation;
+    public Transform fighter;
     bool maxLeftRotation = false;
     bool maxRightRotation = false;
 
     void Start() {
-        
     }
 
     void Update()
@@ -41,13 +39,13 @@ private Vector3 GetBaseInput()
         }
         if (Input.GetKey(KeyCode.A))
         {
+            transform.Rotate(new Vector3(0, -3f, 0));
+
             if(!maxLeftRotation)
             {
-                fighter.transform.Rotate(Vector3.down * 3);
+                fighter.Rotate(0, 0, 3f);
             }
-            transform.Rotate(new Vector3(0, -3, 0));
-
-            if((fighter.transform.eulerAngles.x * -1) < -300)
+            if(fighter.eulerAngles.z > 30 && fighter.eulerAngles.z < 270)
             {
                 maxLeftRotation = true;
                 maxRightRotation = false;
@@ -59,13 +57,13 @@ private Vector3 GetBaseInput()
         }
         if (Input.GetKey(KeyCode.D))
         {
+            transform.Rotate(new Vector3(0, 3f, 0));
+
             if(!maxRightRotation)
             {
-                fighter.transform.Rotate(Vector3.up * 3);
+                fighter.Rotate(0, 0, -3f);
             }
-            transform.Rotate(new Vector3(0, 3, 0));
-
-            if(fighter.transform.eulerAngles.x > 300)
+            if(fighter.eulerAngles.z < 330 && fighter.eulerAngles.z > 90)
             {
                 maxRightRotation = true;
                 maxLeftRotation = false;
@@ -74,6 +72,14 @@ private Vector3 GetBaseInput()
             {
                 maxRightRotation = false;
             }
+        }
+        if(fighter.eulerAngles.z > 300)
+        {
+            fighter.Rotate(Vector3.forward * Time.deltaTime * 100);
+        }
+        if(fighter.eulerAngles.z < 50)
+        {
+            fighter.Rotate(-Vector3.forward * Time.deltaTime * 100);
         }
 
         return velocity;
