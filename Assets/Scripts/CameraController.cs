@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
         public bool followBehind = true;
         public float rotationDamping = 10.0f;
 
-        void Update () {
+        void FixedUpdate () {
                Vector3 wantedPosition;
                if(followBehind)
                        wantedPosition = target.TransformPoint(0, height, -distance);

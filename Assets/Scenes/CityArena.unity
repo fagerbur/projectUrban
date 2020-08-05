@@ -112,31 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &16425484 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8307143364608347355, guid: 018dcb8b0d499f24a913f997aa87aa89,
-    type: 3}
-  m_PrefabInstance: {fileID: 8307143365089502869}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &16425488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 16425484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c64738d0204f21a42b50fee8fa73f5e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2105176025}
-  distance: 7
-  height: 4
-  damping: 5
-  smoothRotation: 1
-  followBehind: 1
-  rotationDamping: 3
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +370,7 @@ Transform:
   m_GameObject: {fileID: 1645859835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4115901, y: 1.0821681, z: 12.910248}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3

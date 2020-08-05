@@ -12,7 +12,7 @@ public class FighterController : MonoBehaviour
     void Start() {
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 velocity = GetBaseInput();
         totalRun = Mathf.Clamp(totalRun * 0.5f, 1f, 1000f);
