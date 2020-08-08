@@ -1,51 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FighterController : MonoBehaviour
-{
-    float mainSpeed = 100.0f;
-    private float totalRun = 1.0f;
-    public Transform fighter;
+public class FighterController : MonoBehaviour {
+
+    public float speed = 100f;
+    public float turnSpeed = 5f;
+    public float hoverForce = 65f;
+    public float hoverHeight = 3.5f;
+    private float powerInput;
+    private float turnInput;
+    private Rigidbody fighterRigidbody;
+    public Transform chassis;
     bool maxLeftRotation = false;
     bool maxRightRotation = false;
 
-    void Start() {
+    void Awake () 
+    {
+        fighterRigidbody = GetComponent <Rigidbody>();
+    }
+
+    void Update () 
+    {
+        powerInput = Input.GetAxis ("Vertical");
+        turnInput = Input.GetAxis ("Horizontal");
+        RotateOnTurns();
     }
 
     void FixedUpdate()
     {
-        Vector3 velocity = GetBaseInput();
-        totalRun = Mathf.Clamp(totalRun * 0.5f, 1f, 1000f);
-        velocity = velocity * mainSpeed * Time.deltaTime;
+        Ray ray = new Ray (transform.position, -transform.up);
+        RaycastHit hit;
 
-        Vector3 newPosition = transform.position;
-        transform.Translate(velocity);
-        newPosition.x = transform.position.x;
-        newPosition.z = transform.position.z;
-        transform.position = newPosition;
+        if (Physics.Raycast(ray, out hit, hoverHeight))
+        {
+            float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
+            Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
+            fighterRigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
+        }
+
+        fighterRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
+        fighterRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
     }
 
-private Vector3 GetBaseInput()
+    void RotateOnTurns()
     {
-        Vector3 velocity = new Vector3();
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            velocity += new Vector3(0, 0, 1);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            velocity += new Vector3(0, 0, -1);
-        }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(new Vector3(0, -3f, 0));
-
             if(!maxLeftRotation)
             {
-                fighter.Rotate(0, 0, 3f);
+                chassis.Rotate(0, 0, 3f);
             }
-            if(fighter.eulerAngles.z > 30 && fighter.eulerAngles.z < 270)
+            if(chassis.eulerAngles.z > 30 && chassis.eulerAngles.z < 270)
             {
                 maxLeftRotation = true;
                 maxRightRotation = false;
@@ -57,31 +62,27 @@ private Vector3 GetBaseInput()
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(new Vector3(0, 3f, 0));
-
             if(!maxRightRotation)
             {
-                fighter.Rotate(0, 0, -3f);
+                chassis.Rotate(0, 0, -3f);
             }
-            if(fighter.eulerAngles.z < 330 && fighter.eulerAngles.z > 90)
+            if(chassis.eulerAngles.z < 330 && chassis.eulerAngles.z > 90)
             {
                 maxRightRotation = true;
                 maxLeftRotation = false;
             }
             else 
             {
-                maxRightRotation = false;
+                maxRightRotation = false;   
             }
         }
-        if(fighter.eulerAngles.z > 300)
+        if(chassis.eulerAngles.z > 300)
         {
-            fighter.Rotate(Vector3.forward * Time.deltaTime * 100);
+            chassis.Rotate(Vector3.forward * Time.deltaTime * 100);
         }
-        if(fighter.eulerAngles.z < 50)
+        if(chassis.eulerAngles.z < 50)
         {
-            fighter.Rotate(-Vector3.forward * Time.deltaTime * 100);
+            chassis.Rotate(-Vector3.forward * Time.deltaTime * 100);
         }
-
-        return velocity;
     }
 }
