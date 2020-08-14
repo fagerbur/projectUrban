@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9127846758922076093}
   - component: {fileID: 9127846758922076066}
   m_Layer: 0
-  m_Name: Sun.002
+  m_Name: BackLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4975,7 +4975,7 @@ GameObject:
   - component: {fileID: 9127846760572322830}
   - component: {fileID: 9127846760572322831}
   m_Layer: 0
-  m_Name: Sun.001
+  m_Name: RightLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9742,7 +9742,7 @@ GameObject:
   - component: {fileID: 9127846760717045614}
   - component: {fileID: 9127846760717045615}
   m_Layer: 0
-  m_Name: Sun
+  m_Name: LeftLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
