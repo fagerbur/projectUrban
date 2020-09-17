@@ -534,7 +534,7 @@ Transform:
   - {fileID: 274619228}
   - {fileID: 1523484293}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795824401
 GameObject:
@@ -674,7 +674,6 @@ GameObject:
   - component: {fileID: 1011336558}
   - component: {fileID: 1011336561}
   - component: {fileID: 1011336560}
-  - component: {fileID: 1011336559}
   m_Layer: 0
   m_Name: SpawnCylinder3
   m_TagString: Untagged
@@ -696,20 +695,6 @@ Transform:
   m_Father: {fileID: 1276769376}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1011336559
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011336557}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1011336560
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -810,7 +795,6 @@ GameObject:
   - component: {fileID: 1100628795}
   - component: {fileID: 1100628798}
   - component: {fileID: 1100628797}
-  - component: {fileID: 1100628796}
   m_Layer: 0
   m_Name: SpawnCylinder1
   m_TagString: Untagged
@@ -832,20 +816,6 @@ Transform:
   m_Father: {fileID: 1276769376}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1100628796
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100628794}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1100628797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -991,7 +961,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276769375
 GameObject:
@@ -1292,7 +1262,6 @@ GameObject:
   - component: {fileID: 1863932456}
   - component: {fileID: 1863932459}
   - component: {fileID: 1863932458}
-  - component: {fileID: 1863932457}
   m_Layer: 0
   m_Name: SpawnCylinder2
   m_TagString: Untagged
@@ -1314,20 +1283,6 @@ Transform:
   m_Father: {fileID: 1276769376}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1863932457
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863932455}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1863932458
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1414,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 29b24dd35f1209645bbe760feabd6944, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 29b24dd35f1209645bbe760feabd6944, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1602,7 +1557,7 @@ PrefabInstance:
     - target: {fileID: 9127846759987150408, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9127846759987150408, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
