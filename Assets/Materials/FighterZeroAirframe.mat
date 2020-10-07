@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: airframe
+  m_Name: FighterZeroAirframe
   m_Shader: {fileID: 4800000, guid: 6b9fe9338d4695b4c9a260549817eef6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0

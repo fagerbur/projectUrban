@@ -1149,6 +1149,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d49afc1ade7ef224caf9704979bb1059, type: 3}
+--- !u!1 &1495522346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9127846759987150404, guid: 48a38191ea45881478c248795a6cc383,
+    type: 3}
+  m_PrefabInstance: {fileID: 9127846760275155698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495522349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495522346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab8412d1e3ec9142a361142aed8bd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1523484293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d49afc1ade7ef224caf9704979bb1059,
@@ -1522,7 +1540,7 @@ PrefabInstance:
     - target: {fileID: 9127846759987150408, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 205.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9127846759987150408, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
@@ -1532,7 +1550,7 @@ PrefabInstance:
     - target: {fileID: 9127846759987150408, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -218.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9127846759987150408, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
@@ -1574,6 +1592,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9127846759987150410, guid: 48a38191ea45881478c248795a6cc383,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7f2d2818309ed3749ba2b1f537eb0911,
+        type: 2}
     - target: {fileID: 9127846760717045615, guid: 48a38191ea45881478c248795a6cc383,
         type: 3}
       propertyPath: m_Lightmapping
