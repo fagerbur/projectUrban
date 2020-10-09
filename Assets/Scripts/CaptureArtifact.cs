@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArtifactFloat : MonoBehaviour
+public class CaptureArtifact : MonoBehaviour
 {
     float height = .5f;
     float verticalSpeed = 2f;

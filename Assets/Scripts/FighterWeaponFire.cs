@@ -39,7 +39,7 @@ public class FighterWeaponFire : MonoBehaviour
                 laserLine.SetPosition(1, hit.point); 
                 Debug.Log(hit.transform.name);
 
-                FighterHealth enemyHealth = hit.collider.GetComponent<FighterHealth>();
+                FighterStatus enemyHealth = hit.collider.GetComponent<FighterStatus>();
 
                 if (enemyHealth != null)
                 {

@@ -4923,6 +4923,7 @@ GameObject:
   - component: {fileID: 9127846759987150411}
   - component: {fileID: 9127846759987150405}
   - component: {fileID: 8190076490148274393}
+  - component: {fileID: 4515643120251695453}
   m_Layer: 0
   m_Name: fighterZero
   m_TagString: Untagged
@@ -4992,6 +4993,18 @@ CapsuleCollider:
   m_Height: 6
   m_Direction: 2
   m_Center: {x: 0, y: -0.5, z: -1.75}
+--- !u!114 &4515643120251695453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127846759987150404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aecaf0cddc1c4d4392062eadd7df8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9127846760286088976
 GameObject:
   m_ObjectHideFlags: 0
