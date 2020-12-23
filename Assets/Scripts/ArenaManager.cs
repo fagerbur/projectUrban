@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ArenaManager : MonoBehaviour
 {
-    private Object teamBase;
+    private Object teamBase0;
+    private Object teamBase1;
     private List<Transform> team0Spawns;
     private List<Transform> team1Spawns; 
 
@@ -16,15 +17,16 @@ public class ArenaManager : MonoBehaviour
         Vector3 teamBase0Pos = new Vector3(237.1f, -7.45f, -221.7f);
         Vector3 teamBase1Pos = new Vector3(-237.1f, -7.45f, 221.7f);
 
-        teamBase = Resources.Load("Arena/TeamBase", typeof(GameObject));
+        teamBase0 = Resources.Load("Arena/TeamBase0", typeof(GameObject));
+        teamBase1 = Resources.Load("Arena/TeamBase1", typeof(GameObject));
 
-        GameObject teamBase0 = (GameObject)Instantiate(teamBase, teamBase0Pos, Quaternion.identity);
-        teamBase0.name = "teamBase0";
-        GameObject teamBase1 = (GameObject)Instantiate(teamBase, teamBase1Pos, Quaternion.AngleAxis(180, Vector3.up));
-        teamBase1.name = "teamBase1";
+        GameObject teamBaseRed = (GameObject)Instantiate(teamBase0, teamBase0Pos, Quaternion.identity);
+        teamBaseRed.name = "teamBaseRed";
+        GameObject teamBaseBlue = (GameObject)Instantiate(teamBase1, teamBase1Pos, Quaternion.AngleAxis(180, Vector3.up));
+        teamBaseBlue.name = "teamBaseBlue";
 
-        Transform team0SpawnBase = teamBase0.transform.GetChild(0);
-        Transform team1SpawnBase = teamBase1.transform.GetChild(0);
+        Transform team0SpawnBase = teamBaseRed.transform.GetChild(0);
+        Transform team1SpawnBase = teamBaseBlue.transform.GetChild(0);
 
         foreach (Transform child in team0SpawnBase)
         {

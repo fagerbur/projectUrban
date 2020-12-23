@@ -5,9 +5,10 @@ using UnityEngine;
 public class FighterStatus : MonoBehaviour
 {
     public ArenaManager arenaManager;
+    public int fighterTeam = 1;
+    public bool fighterCapturedArtifact = false;
+
     private float fighterHealth = 3;
-    private bool fighterCapturedArtifact = false;
-    private int fighterTeam = 1;
     private Coroutine respawnCoroutine;
 
     public void Awake() 
@@ -33,6 +34,11 @@ public class FighterStatus : MonoBehaviour
         
         yield return new WaitForSeconds(3);
 
+        if(transform.GetChild(1).childCount > 0)
+        {
+            transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();
+        }
+
         transform.position = respawnLocation;
         transform.LookAt(new Vector3(0,2,0));
         fighterHealth = 3;
@@ -42,6 +48,13 @@ public class FighterStatus : MonoBehaviour
 
     public void ArtifactCaptured()
     {
-        fighterCapturedArtifact = true;
+        if(fighterCapturedArtifact)
+        {
+            fighterCapturedArtifact = false;
+        }
+        else
+        {
+            fighterCapturedArtifact = true;
+        }
     }
 }
