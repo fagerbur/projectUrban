@@ -14,6 +14,7 @@ public class FighterStatus : MonoBehaviour
     public void Awake() 
     {
         arenaManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ArenaManager>();
+        fighterTeam = Random.Range(0,1);
     }
 
     public void WeaponDamage(float fighterDamage)
@@ -28,18 +29,16 @@ public class FighterStatus : MonoBehaviour
         }
     }
 
-    IEnumerator FighterRespawn()
+    public IEnumerator FighterRespawn()
     {
-        Vector3 respawnLocation = arenaManager.RespawnLocation(fighterTeam);
+        Vector3 spawnLocation = arenaManager.SpawnLocation(fighterTeam);
         
-        yield return new WaitForSeconds(3);
-
         if(transform.GetChild(1).childCount > 0)
         {
             transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();
         }
 
-        transform.position = respawnLocation;
+        transform.position = spawnLocation;
         transform.LookAt(new Vector3(0,2,0));
         fighterHealth = 3;
 

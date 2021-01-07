@@ -7,7 +7,7 @@ public class ArenaManager : MonoBehaviour
     private Object teamBase0;
     private Object teamBase1;
     private List<Transform> team0Spawns;
-    private List<Transform> team1Spawns; 
+    private List<Transform> team1Spawns;
 
     void Awake()
     {
@@ -37,6 +37,37 @@ public class ArenaManager : MonoBehaviour
         {
             team1Spawns.Add(child);
         }
+
+        SpawnPlayers();
+    }
+
+    void SpawnPlayers()
+    {
+        Object fighterZeroPlayer = Resources.Load("Fighters/fighterZero", typeof(GameObject));
+        Object fighterZeroAi = Resources.Load("Fighters/fighterZero_AI", typeof(GameObject));
+
+        GameObject fighterZero = (GameObject)Instantiate(fighterZeroPlayer, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi1 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi2 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi3 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi4 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi5 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+
+        int playerTeam = fighterZero.GetComponent<FighterStatus>().fighterTeam;
+        Camera.main.GetComponent<CameraController>().target = fighterZero.transform;
+
+        fighterZeroAi1.GetComponent<FighterStatus>().fighterTeam = playerTeam;
+        fighterZeroAi2.GetComponent<FighterStatus>().fighterTeam = playerTeam;
+        fighterZeroAi3.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
+        fighterZeroAi4.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
+        fighterZeroAi5.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
+
+        StartCoroutine(fighterZero.GetComponent<FighterStatus>().FighterRespawn());
+        StartCoroutine(fighterZeroAi1.GetComponent<FighterStatus>().FighterRespawn());
+        StartCoroutine(fighterZeroAi2.GetComponent<FighterStatus>().FighterRespawn());
+        StartCoroutine(fighterZeroAi3.GetComponent<FighterStatus>().FighterRespawn());
+        StartCoroutine(fighterZeroAi4.GetComponent<FighterStatus>().FighterRespawn());
+        StartCoroutine(fighterZeroAi5.GetComponent<FighterStatus>().FighterRespawn());
     }
 
     void Update()
@@ -44,12 +75,12 @@ public class ArenaManager : MonoBehaviour
         
     }
 
-    public Vector3 RespawnLocation(int fighterTeam)
+    public Vector3 SpawnLocation(int fighterTeam)
     {
         Collider[] isColliding;
         int randomSpawn = Random.Range(0,3);
 
-        if(fighterTeam == 0)
+        if(fighterTeam == 1)
         {
             isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,2,2));
             while(isColliding.Length > 1)

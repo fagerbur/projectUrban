@@ -89,7 +89,7 @@ Material:
     - _AdditionalLightIgnoreCelShade: 0.9
     - _Alpha: 1
     - _AlphaClip: 0
-    - _Blend: 0
+    - _Blend: 3
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
