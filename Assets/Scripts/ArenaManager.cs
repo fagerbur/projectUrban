@@ -62,17 +62,12 @@ public class ArenaManager : MonoBehaviour
         fighterZeroAi4.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
         fighterZeroAi5.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
 
-        StartCoroutine(fighterZero.GetComponent<FighterStatus>().FighterRespawn());
-        StartCoroutine(fighterZeroAi1.GetComponent<FighterStatus>().FighterRespawn());
-        StartCoroutine(fighterZeroAi2.GetComponent<FighterStatus>().FighterRespawn());
-        StartCoroutine(fighterZeroAi3.GetComponent<FighterStatus>().FighterRespawn());
-        StartCoroutine(fighterZeroAi4.GetComponent<FighterStatus>().FighterRespawn());
-        StartCoroutine(fighterZeroAi5.GetComponent<FighterStatus>().FighterRespawn());
-    }
-
-    void Update()
-    {
-        
+        fighterZero.GetComponent<FighterStatus>().FighterRespawn();
+        fighterZeroAi1.GetComponent<FighterStatus>().FighterRespawn();
+        fighterZeroAi2.GetComponent<FighterStatus>().FighterRespawn();
+        fighterZeroAi3.GetComponent<FighterStatus>().FighterRespawn();
+        fighterZeroAi4.GetComponent<FighterStatus>().FighterRespawn();
+        fighterZeroAi5.GetComponent<FighterStatus>().FighterRespawn();
     }
 
     public Vector3 SpawnLocation(int fighterTeam)
@@ -82,22 +77,22 @@ public class ArenaManager : MonoBehaviour
 
         if(fighterTeam == 1)
         {
-            isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,2,2));
+            isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
             while(isColliding.Length > 1)
             {
                 randomSpawn = Random.Range(0,3);
-                isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,2,2));
+                isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
             }
 
             return new Vector3(team0Spawns[randomSpawn].position.x, 3, team0Spawns[randomSpawn].position.z);
         }
         else
         {
-            isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,2,2));
+            isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));
             while(isColliding.Length > 1)
             {
                 randomSpawn = Random.Range(0,3);
-                isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,2,2));
+                isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));
             }
 
             return new Vector3(team1Spawns[randomSpawn].position.x, 3, team1Spawns[randomSpawn].position.z);

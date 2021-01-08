@@ -9,7 +9,6 @@ public class FighterStatus : MonoBehaviour
     public bool fighterCapturedArtifact = false;
 
     private float fighterHealth = 3;
-    private Coroutine respawnCoroutine;
 
     public void Awake() 
     {
@@ -25,12 +24,13 @@ public class FighterStatus : MonoBehaviour
         {
             fighterCapturedArtifact = false;
             
-            respawnCoroutine = StartCoroutine(FighterRespawn());
+            FighterRespawn();
         }
     }
 
-    public IEnumerator FighterRespawn()
+    public void FighterRespawn()
     {
+
         Vector3 spawnLocation = arenaManager.SpawnLocation(fighterTeam);
         
         if(transform.GetChild(1).childCount > 0)
@@ -42,7 +42,7 @@ public class FighterStatus : MonoBehaviour
         transform.LookAt(new Vector3(0,2,0));
         fighterHealth = 3;
 
-        yield return new WaitForFixedUpdate();
+        Physics.SyncTransforms();
     }
 
     public void ArtifactCaptured()
