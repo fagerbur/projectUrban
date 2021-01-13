@@ -78,7 +78,7 @@ public class ArenaManager : MonoBehaviour
         if(fighterTeam == 1)
         {
             isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
-            while(isColliding.Length > 1)
+            while(isColliding.Length > 2)
             {
                 randomSpawn = Random.Range(0,3);
                 isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
@@ -89,7 +89,7 @@ public class ArenaManager : MonoBehaviour
         else
         {
             isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));
-            while(isColliding.Length > 1)
+            while(isColliding.Length > 2)
             {
                 randomSpawn = Random.Range(0,3);
                 isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));

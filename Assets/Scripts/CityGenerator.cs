@@ -19,18 +19,18 @@ public class CityGenerator : MonoBehaviour
             int x = (int)Random.Range(0,18);
             
             GameObject building = (GameObject)buildingsArray[x];
-            Vector3 newLocation = new Vector3(Mathf.Round(Random.Range(-foundation.rect.width * 2, foundation.rect.width * 2) / 10) * 10f, 0, Mathf.Round(Random.Range(-foundation.rect.width * 2, foundation.rect.width * 2) / 10) * 10f);
+            Vector3 newLocation = new Vector3(Mathf.Round(Random.Range(-foundation.rect.width * 2.3f, foundation.rect.width * 2.3f) / 10) * 10f, 0, Mathf.Round(Random.Range(-foundation.rect.width * 2.3f, foundation.rect.width * 2.3f) / 10) * 10f);
             Vector3 buildingBounds = building.GetComponent<MeshFilter>().sharedMesh.bounds.max;
             Collider[] isColliding = Physics.OverlapBox(newLocation, buildingBounds);
             int collisionCount = 0;
 
             while(isColliding.Length > 1)
             {   
-                newLocation = new Vector3(Mathf.Round(Random.Range(-foundation.rect.width * 2, foundation.rect.width * 2) / 10) * 10f, 0, Mathf.Round(Random.Range(-foundation.rect.width * 2, foundation.rect.width * 2) / 10) * 10f);
+                newLocation = new Vector3(Mathf.Round(Random.Range(-foundation.rect.width * 2.3f, foundation.rect.width * 2.3f) / 10) * 10f, 0, Mathf.Round(Random.Range(-foundation.rect.width * 2.3f, foundation.rect.width * 2.3f) / 10) * 10f);
                 isColliding = Physics.OverlapBox(newLocation, buildingBounds);
                 collisionCount++;
 
-                if(collisionCount > 15)
+                if(collisionCount > 8)
                 {
                     isCityFull = true;
                     break;
