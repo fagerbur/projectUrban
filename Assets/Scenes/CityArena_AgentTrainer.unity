@@ -692,7 +692,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1031171986}
-  - component: {fileID: 1031171987}
   - component: {fileID: 1031171988}
   m_Layer: 0
   m_Name: GameManager
@@ -715,20 +714,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1031171987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031171985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5c304da88770d4c9c1007f2544893e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foundation: {fileID: 1645859839}
-  arenaBuildings: {fileID: 1538380173}
 --- !u!114 &1031171988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,7 +723,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1031171985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9679de542ca2f824f8e00e8d86fe9202, type: 3}
+  m_Script: {fileID: 11500000, guid: 94786d78c99a4fd44b70079ef557b5d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1134034225

@@ -12,6 +12,13 @@ public class CameraController : MonoBehaviour
         public bool followBehind = true;
         public float rotationDamping = 10.0f;
 
+        void Awake() {
+                if(target == null)
+                {
+                        target = transform.parent;
+                }
+        }
+
         void FixedUpdate () {
                Vector3 wantedPosition;
                if(followBehind)

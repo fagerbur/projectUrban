@@ -11,7 +11,6 @@ public class CaptureArtifact : MonoBehaviour
     Transform artifactParent;
     int artifactTeam;
     string teamName;
-    ArenaManager arenaManager;
 
     void Start()
     {

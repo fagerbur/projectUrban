@@ -13,7 +13,6 @@ public class CityGenerator : MonoBehaviour
     void Awake()
     {
         //TODO: swap resources.load to assetbundle
-        //TODO: Fix building collision so it's not sticky...
         buildingsArray = Resources.LoadAll("Buildings", typeof(GameObject));
 
         while(!isCityFull)

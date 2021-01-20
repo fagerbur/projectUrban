@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArenaManager : MonoBehaviour
+public class ArenaManager_AgentTrainer : MonoBehaviour
 {
     private Object teamBase0;
     private Object teamBase1;
@@ -43,31 +43,29 @@ public class ArenaManager : MonoBehaviour
 
     void SpawnPlayers()
     {
-        Object fighterZeroPlayer = Resources.Load("Fighters/fighterZero", typeof(GameObject));
         Object fighterZeroAi = Resources.Load("Fighters/fighterZero_AI", typeof(GameObject));
 
-        GameObject fighterZero = (GameObject)Instantiate(fighterZeroPlayer, new Vector3(0,-5,0), Quaternion.identity);
         GameObject fighterZeroAi1 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
         GameObject fighterZeroAi2 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
         GameObject fighterZeroAi3 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
         GameObject fighterZeroAi4 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
         GameObject fighterZeroAi5 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi6 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
 
-        int playerTeam = fighterZero.GetComponent<FighterStatus>().fighterTeam;
-        //Camera.main.GetComponent<CameraController>().target = fighterZero.transform;
+        int AgentTeam = fighterZeroAi1.GetComponent<FighterStatus>().fighterTeam;
 
-        fighterZeroAi1.GetComponent<FighterStatus>().fighterTeam = playerTeam;
-        fighterZeroAi2.GetComponent<FighterStatus>().fighterTeam = playerTeam;
-        fighterZeroAi3.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
-        fighterZeroAi4.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
-        fighterZeroAi5.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(playerTeam);
+        fighterZeroAi2.GetComponent<FighterStatus>().fighterTeam = AgentTeam;
+        fighterZeroAi3.GetComponent<FighterStatus>().fighterTeam = AgentTeam;
+        fighterZeroAi4.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(AgentTeam);
+        fighterZeroAi5.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(AgentTeam);
+        fighterZeroAi6.GetComponent<FighterStatus>().fighterTeam = 1 - Mathf.Abs(AgentTeam);
 
-        fighterZero.GetComponent<FighterStatus>().FighterRespawn();
         fighterZeroAi1.GetComponent<FighterStatus>().FighterRespawn();
         fighterZeroAi2.GetComponent<FighterStatus>().FighterRespawn();
         fighterZeroAi3.GetComponent<FighterStatus>().FighterRespawn();
         fighterZeroAi4.GetComponent<FighterStatus>().FighterRespawn();
         fighterZeroAi5.GetComponent<FighterStatus>().FighterRespawn();
+        fighterZeroAi6.GetComponent<FighterStatus>().FighterRespawn();
     }
 
     public Vector3 SpawnLocation(int fighterTeam)
