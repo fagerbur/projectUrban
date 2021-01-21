@@ -8,33 +8,30 @@ using Unity.MLAgents.Actuators;
 public class FighterAgent : Agent
 {
     public float forceMultiplier = 10;
-    public Transform Target;
+    public Transform EnemyArtifact;
+    public Transform TeamBase;
     private Rigidbody fighterBody;
+    private AgentStatus agentStatus;
+
     void Start()
     {
         fighterBody = GetComponent<Rigidbody>();
+        agentStatus = GetComponent<AgentStatus>();
     }
 
     public override void OnEpisodeBegin()
     {
-        // If the Agent fell, zero its momentum
-        if (this.transform.localPosition.y < 0)
-        {
-            this.fighterBody.angularVelocity = Vector3.zero;
-            this.fighterBody.velocity = Vector3.zero;
-            this.transform.localPosition = new Vector3(0, 0.5f, 0);
-        }
-
-        // Move the target to a new spot
-        Target.localPosition = new Vector3(Random.value * 8 - 4,
-                                            0.5f,
-                                            Random.value * 8 - 4);
+        //Should the arena restart all the agents once a score of 3 is reached?
+        this.fighterBody.angularVelocity = Vector3.zero;
+        this.fighterBody.velocity = Vector3.zero;
+        agentStatus.FighterRespawn();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         // Target and Agent positions
-        sensor.AddObservation(Target.localPosition);
+        sensor.AddObservation(EnemyArtifact.localPosition);
+        sensor.AddObservation(TeamBase.localPosition);
         sensor.AddObservation(this.transform.localPosition);
 
         // Agent velocity
@@ -51,7 +48,7 @@ public class FighterAgent : Agent
         fighterBody.AddForce(controlSignal * forceMultiplier);
 
         // Rewards
-        float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
+        float distanceToTarget = Vector3.Distance(this.transform.localPosition, EnemyArtifact.localPosition);
 
         // Reached target
         if (distanceToTarget < 1.42f)

@@ -8,6 +8,8 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
     private Object teamBase1;
     private List<Transform> team0Spawns;
     private List<Transform> team1Spawns;
+    private GameObject teamBaseRed;
+    private GameObject teamBaseBlue;
 
     void Awake()
     {
@@ -20,9 +22,9 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
         teamBase0 = Resources.Load("Arena/TeamBase0", typeof(GameObject));
         teamBase1 = Resources.Load("Arena/TeamBase1", typeof(GameObject));
 
-        GameObject teamBaseRed = (GameObject)Instantiate(teamBase0, teamBase0Pos, Quaternion.identity);
+        teamBaseRed = (GameObject)Instantiate(teamBase0, teamBase0Pos, Quaternion.identity);
         teamBaseRed.name = "teamBaseRed";
-        GameObject teamBaseBlue = (GameObject)Instantiate(teamBase1, teamBase1Pos, Quaternion.AngleAxis(180, Vector3.up));
+        teamBaseBlue = (GameObject)Instantiate(teamBase1, teamBase1Pos, Quaternion.AngleAxis(180, Vector3.up));
         teamBaseBlue.name = "teamBaseBlue";
 
         Transform team0SpawnBase = teamBaseRed.transform.GetChild(0);
@@ -52,19 +54,34 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
         GameObject fighterZeroAi5 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
         GameObject fighterZeroAi6 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
 
-        int AgentTeam = fighterZeroAi1.GetComponent<AgentStatus>().fighterTeam;
-
-        fighterZeroAi2.GetComponent<AgentStatus>().fighterTeam = AgentTeam;
-        fighterZeroAi3.GetComponent<AgentStatus>().fighterTeam = AgentTeam;
-        fighterZeroAi4.GetComponent<AgentStatus>().fighterTeam = 1 - Mathf.Abs(AgentTeam);
-        fighterZeroAi5.GetComponent<AgentStatus>().fighterTeam = 1 - Mathf.Abs(AgentTeam);
-        fighterZeroAi6.GetComponent<AgentStatus>().fighterTeam = 1 - Mathf.Abs(AgentTeam);
-
+        fighterZeroAi1.GetComponent<AgentStatus>().fighterTeam = 0;
+        fighterZeroAi1.GetComponent<FighterAgent>().EnemyArtifact = teamBaseRed.transform.GetChild(1);
+        fighterZeroAi1.GetComponent<FighterAgent>().TeamBase = teamBaseBlue.transform.GetChild(2);
         fighterZeroAi1.GetComponent<AgentStatus>().FighterRespawn();
+
+        fighterZeroAi2.GetComponent<AgentStatus>().fighterTeam = 0;
+        fighterZeroAi2.GetComponent<FighterAgent>().EnemyArtifact = teamBaseRed.transform.GetChild(1);
+        fighterZeroAi2.GetComponent<FighterAgent>().TeamBase = teamBaseBlue.transform.GetChild(2);
         fighterZeroAi2.GetComponent<AgentStatus>().FighterRespawn();
+
+        fighterZeroAi3.GetComponent<AgentStatus>().fighterTeam = 0;
+        fighterZeroAi3.GetComponent<FighterAgent>().EnemyArtifact = teamBaseRed.transform.GetChild(1);
+        fighterZeroAi3.GetComponent<FighterAgent>().TeamBase = teamBaseBlue.transform.GetChild(2);
         fighterZeroAi3.GetComponent<AgentStatus>().FighterRespawn();
+
+        fighterZeroAi4.GetComponent<AgentStatus>().fighterTeam = 1;
+        fighterZeroAi4.GetComponent<FighterAgent>().EnemyArtifact = teamBaseBlue.transform.GetChild(1);
+        fighterZeroAi4.GetComponent<FighterAgent>().TeamBase = teamBaseRed.transform.GetChild(2);
         fighterZeroAi4.GetComponent<AgentStatus>().FighterRespawn();
+
+        fighterZeroAi5.GetComponent<AgentStatus>().fighterTeam = 1;
+        fighterZeroAi5.GetComponent<FighterAgent>().EnemyArtifact = teamBaseBlue.transform.GetChild(1);
+        fighterZeroAi5.GetComponent<FighterAgent>().TeamBase = teamBaseRed.transform.GetChild(2);
         fighterZeroAi5.GetComponent<AgentStatus>().FighterRespawn();
+
+        fighterZeroAi6.GetComponent<AgentStatus>().fighterTeam = 1;
+        fighterZeroAi6.GetComponent<FighterAgent>().EnemyArtifact = teamBaseBlue.transform.GetChild(1);
+        fighterZeroAi6.GetComponent<FighterAgent>().TeamBase = teamBaseRed.transform.GetChild(2);
         fighterZeroAi6.GetComponent<AgentStatus>().FighterRespawn();
     }
 
