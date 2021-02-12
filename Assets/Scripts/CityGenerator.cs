@@ -12,6 +12,11 @@ public class CityGenerator : MonoBehaviour
 
     void Awake()
     {
+        SpawnAll();
+    }
+
+    public void SpawnAll()
+    {
         //TODO: swap resources.load to assetbundle
         buildingsArray = Resources.LoadAll("Buildings", typeof(GameObject));
 
@@ -43,5 +48,14 @@ public class CityGenerator : MonoBehaviour
                 Instantiate(building, newLocation, Quaternion.identity, arenaBuildings.transform);
             }
         }
+    }
+
+    public void DestroyAll()
+    {
+        foreach(Transform bldg in arenaBuildings.transform)
+        {
+            Destroy(bldg.transform.gameObject);
+        }
+        isCityFull = false;
     }
 }

@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FighterZeroAirframe
-  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
@@ -33,6 +33,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_4036A321:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 431c35d283366d943a98f18e2d4a34f8, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -57,11 +61,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FourthTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 431c35d283366d943a98f18e2d4a34f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 431c35d283366d943a98f18e2d4a34f8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -77,15 +93,30 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SecondTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 2800000, guid: 431c35d283366d943a98f18e2d4a34f8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ThirdTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_38BD3441: 0.4
+    - Vector1_551A8284: 0.1
+    - Vector1_5BC4323: 8
     - Vector1_CF8B0D8D: 6
     - Vector1_ED5ABFD9: 0.05
     - Vector1_F3F6B787: 0
+    - Vector1_F8AD0BCD: 8
     - _AdditionalLightIgnoreCelShade: 0.9
     - _Alpha: 1
     - _AlphaClip: 0
@@ -99,9 +130,11 @@ Material:
     - _CelShadeSoftness: 0.05
     - _ColorMode: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.422
+    - _DEBUG_VERTEX_COLOR: 0
     - _DetailNormalMapScale: 1
     - _DirectLightMultiplier: 0.25
+    - _Dissolve: 0
     - _DistortionBlend: 0.5
     - _DistortionEnabled: 0
     - _DistortionStrength: 1
@@ -111,6 +144,7 @@ Material:
     - _EmissionMulByBaseColor: 0
     - _EnvironmentReflections: 1
     - _FlipbookMode: 0
+    - _FourthTextureScale: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossinessSource: 0
@@ -118,13 +152,18 @@ Material:
     - _IndirectLightMultiplier: 1
     - _LightingEnabled: 0
     - _MainLightIgnoreCelShade: 0
+    - _MainTextureScale: 0.2
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScale: 0
     - _OcclusionDirectStrength: 0.75
     - _OcclusionIndirectStrength: 0.5
     - _OcclusionRemapEnd: 1
     - _OcclusionRemapStart: 0
     - _OcclusionStrength: 1
+    - _OutlineDepthSensitivity: 1
+    - _OutlineNormalsSensitivity: 1
+    - _OutlineThickness: 1
     - _OutlineWidth: 1
     - _OutlineZOffset: 0.0001
     - _OutlineZOffsetMaskRemapEnd: 1
@@ -136,6 +175,8 @@ Material:
     - _ReceiveShadows: 1
     - _RimAmount: 0.716
     - _RimThreshold: 0.1
+    - _SampleGI: 0
+    - _SecondTextureScale: 1
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
@@ -147,6 +188,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _ThirdTextureScale: 0
     - _UVSec: 0
     - _UseAlphaClipping: 0
     - _UseEmission: 0
@@ -155,7 +197,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_28180829: {r: 0.5019608, g: 0.3019608, b: 0.05882353, a: 1}
+    - Color_551FE3E8: {r: 0, g: 0, b: 0, a: 0}
+    - Color_5678DAF5: {r: 0, g: 0, b: 0, a: 0}
     - Color_57D43A16: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0}
+    - Color_BD765EA0: {r: 0, g: 0, b: 0, a: 0}
+    - Color_E53190CD: {r: 0, g: 0, b: 0, a: 0}
     - Color_F689E8B9: {r: 0.9245283, g: 0.6391348, b: 0.2921858, a: 1}
     - _AmbientColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
@@ -165,9 +211,13 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionMapChannelMask: {r: 1, g: 1, b: 1, a: 0}
     - _IndirectLightMinColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _OcclusionMapChannelMask: {r: 1, g: 0, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _VertexColor_ChannelMixer: {r: 0, g: 0, b: 0, a: 0}

@@ -7,67 +7,165 @@ using Unity.MLAgents.Actuators;
 
 public class FighterAgent : Agent
 {
-    public float forceMultiplier = 10;
     public Transform EnemyArtifact;
     public Transform TeamBase;
     private Rigidbody fighterBody;
     private AgentStatus agentStatus;
+    private FighterWeaponFire fighterWeaponFire;
+    private float powerInput;
+    private float turnInput;
+    private bool artifactCaptured;
+    private CityGenerator cityGenerator;
+
+    public GameObject gameManager;
+    public float moveSpeed = 5;
+    public float speed = 100f;
+    public float forceMultiplier = 10f;
+    public float turnSpeed = 5f;
+    public float hoverForce = 65f;
+    public float hoverHeight = 3.5f;
 
     void Start()
     {
         fighterBody = GetComponent<Rigidbody>();
         agentStatus = GetComponent<AgentStatus>();
+        fighterWeaponFire = GetComponentInChildren<FighterWeaponFire>();
+        gameManager = GameObject.Find("GameManager");
+        cityGenerator = gameManager.GetComponent<CityGenerator>();
+
     }
 
     public override void OnEpisodeBegin()
     {
-        //Should the arena restart all the agents once a score of 3 is reached?
         this.fighterBody.angularVelocity = Vector3.zero;
         this.fighterBody.velocity = Vector3.zero;
-        agentStatus.FighterRespawn();
+        artifactCaptured = false;
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Target and Agent positions
-        sensor.AddObservation(EnemyArtifact.localPosition);
-        sensor.AddObservation(TeamBase.localPosition);
-        sensor.AddObservation(this.transform.localPosition);
+        if(!artifactCaptured)
+        {
+            sensor.AddObservation(EnemyArtifact.position);
+        }
+        else
+        {
+            sensor.AddObservation(TeamBase.position);
+        }
 
-        // Agent velocity
+        sensor.AddObservation(transform.position);
+
         sensor.AddObservation(fighterBody.velocity.x);
         sensor.AddObservation(fighterBody.velocity.z);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        // Actions, size = 2
-        Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = actionBuffers.ContinuousActions[0];
-        controlSignal.z = actionBuffers.ContinuousActions[1];
-        fighterBody.AddForce(controlSignal * forceMultiplier);
+        AddReward(-0.0001f);
 
-        // Rewards
-        float distanceToTarget = Vector3.Distance(this.transform.localPosition, EnemyArtifact.localPosition);
+        var discreteActions = actionBuffers.DiscreteActions;
 
-        // Reached target
-        if (distanceToTarget < 1.42f)
+        MoveAgent(actionBuffers.DiscreteActions);
+
+        discreteActions[0] = 0;
+        discreteActions[1] = 0;
+        discreteActions[2] = 0;
+    }
+
+    public void MoveAgent(ActionSegment<int> act)
+    {
+        var dirToGo = Vector3.zero;
+        var rotateDir = Vector3.zero;
+
+        var forwardAxis = act[0];
+        var rotateAxis = act[1];
+
+        switch (forwardAxis)
         {
-            SetReward(1.0f);
-            EndEpisode();
+            case 1:
+                dirToGo = transform.forward;
+                break;
+            case 2:
+                dirToGo = -transform.forward;
+                break;
         }
 
-        // Fell off platform
-        else if (this.transform.localPosition.y < 0)
+        switch (rotateAxis)
         {
-            EndEpisode();
+            case 1:
+                rotateDir = -transform.up;
+                break;
+            case 2:
+                rotateDir = transform.up;
+                break;
         }
+
+        if (act[2] == 1)
+        {
+            fighterWeaponFire.isFiring = true;
+        }
+
+        fighterBody.AddForce(dirToGo * moveSpeed, ForceMode.VelocityChange);
+        transform.Rotate(rotateDir, Time.fixedDeltaTime * turnSpeed);
+    }
+
+    public void AgentDestroyedAgent()
+    {
+        AddReward(0.5f);
+        print("Fighter Kill: " + GetCumulativeReward());
+    }
+
+    public void AgentCapturedArtifact()
+    {
+        // artifactCaptured = true;
+        AddReward(2.0f);
+        print("Artifact Stolen: " + GetCumulativeReward());
+    }
+
+    public void AgentReturnedArtifact()
+    {
+        // artifactCaptured = false;
+        AddReward(5.0f);
+        print("Artifact Captured: " + GetCumulativeReward());
+    }
+
+    public void MatchEnded()
+    {
+        cityGenerator.DestroyAll();
+        EndEpisode();
+
+        foreach (Transform fighter in agentStatus.arenaManager.FighterArray)
+        {
+            fighter.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            fighter.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            fighter.transform.position = new Vector3(0,-100,0);
+            fighter.GetComponent<AgentStatus>().FighterRespawn();
+        }
+        cityGenerator.SpawnAll();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        var continuousActionsOut = actionsOut.ContinuousActions;
-        continuousActionsOut[0] = Input.GetAxis("Horizontal");
-        continuousActionsOut[1] = Input.GetAxis("Vertical");
+        var discreteActions = actionsOut.DiscreteActions;
+        discreteActions[0] = 0;
+        discreteActions[1] = 0;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            discreteActions[0] = 1;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            discreteActions[1] = 1;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            discreteActions[1] = 2;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {   
+            discreteActions[0] = 2;
+        }
+        discreteActions[2] = Input.GetKey(KeyCode.X) ? 1 : 0;
     }
 }

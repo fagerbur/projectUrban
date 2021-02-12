@@ -11,13 +11,17 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
     private GameObject teamBaseRed;
     private GameObject teamBaseBlue;
 
+    public Transform FighterArray;
+    public int teamRedScore = 0;
+    public int teamBlueScore = 0;
+
     void Awake()
     {
         team0Spawns = new List<Transform>();
         team1Spawns = new List<Transform>();
 
-        Vector3 teamBase0Pos = new Vector3(237.1f, -7.45f, -221.7f);
-        Vector3 teamBase1Pos = new Vector3(-237.1f, -7.45f, 221.7f);
+        Vector3 teamBase0Pos = new Vector3(185f, -7.45f, -100f);
+        Vector3 teamBase1Pos = new Vector3(-60f, -7.45f, 115f);
 
         teamBase0 = Resources.Load("Arena/TeamBase0", typeof(GameObject));
         teamBase1 = Resources.Load("Arena/TeamBase1", typeof(GameObject));
@@ -43,16 +47,16 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
         SpawnPlayers();
     }
 
-    void SpawnPlayers()
+    public void SpawnPlayers()
     {
         Object fighterZeroAi = Resources.Load("Fighters/fighterZero_AI", typeof(GameObject));
 
-        GameObject fighterZeroAi1 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
-        GameObject fighterZeroAi2 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
-        GameObject fighterZeroAi3 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
-        GameObject fighterZeroAi4 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
-        GameObject fighterZeroAi5 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
-        GameObject fighterZeroAi6 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity);
+        GameObject fighterZeroAi1 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity, FighterArray);
+        GameObject fighterZeroAi2 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity, FighterArray);
+        GameObject fighterZeroAi3 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity, FighterArray);
+        GameObject fighterZeroAi4 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity, FighterArray);
+        GameObject fighterZeroAi5 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity, FighterArray);
+        GameObject fighterZeroAi6 = (GameObject)Instantiate(fighterZeroAi, new Vector3(0,-5,0), Quaternion.identity, FighterArray);
 
         fighterZeroAi1.GetComponent<AgentStatus>().fighterTeam = 0;
         fighterZeroAi1.GetComponent<FighterAgent>().EnemyArtifact = teamBaseRed.transform.GetChild(1);
@@ -88,15 +92,17 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
     public Vector3 SpawnLocation(int fighterTeam)
     {
         Collider[] isColliding;
-        int randomSpawn = Random.Range(0,3);
+        int randomSpawn = Random.Range(0,4);
+        int tries = 0;
 
         if(fighterTeam == 1)
         {
             isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
             while(isColliding.Length > 2)
             {
-                randomSpawn = Random.Range(0,3);
+                randomSpawn = Random.Range(0,4);
                 isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
+                if(tries > 10) break;
             }
 
             return new Vector3(team0Spawns[randomSpawn].position.x, 3, team0Spawns[randomSpawn].position.z);
@@ -106,8 +112,10 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
             isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));
             while(isColliding.Length > 2)
             {
-                randomSpawn = Random.Range(0,3);
+                randomSpawn = Random.Range(0,4);
                 isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));
+                tries++;
+                if(tries > 10) break;
             }
 
             return new Vector3(team1Spawns[randomSpawn].position.x, 3, team1Spawns[randomSpawn].position.z);

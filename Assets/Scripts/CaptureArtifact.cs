@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CaptureArtifact : MonoBehaviour
 {
-    float height = .5f;
-    float verticalSpeed = 2f;
-    float rotateSpeed = 45f;
-    Vector3 origin;
-    Transform artifactParent;
-    int artifactTeam;
-    string teamName;
+    public float height = .5f;
+    public float verticalSpeed = 2f;
+    public float rotateSpeed = 45f;
+    private Vector3 origin;
+    private Transform artifactParent;
+    private int artifactTeam;
+    private string teamName;
+    public GameObject gameManager;
+    public ArenaManager arenaManager;
+    public ArenaManager_AgentTrainer agentArenaManager;
 
     void Start()
     {
@@ -25,6 +28,17 @@ public class CaptureArtifact : MonoBehaviour
         {
             artifactTeam = 1;
         }
+
+        gameManager = GameObject.Find("GameManager");
+
+        // if(GameManager.TryGetComponent<ArenaManager>(out var arenaFake))
+        // {
+        //     arenaManager = GameManager.GetComponent<ArenaManager>();
+        // }
+        // else
+        // {
+            agentArenaManager = gameManager.GetComponent<ArenaManager_AgentTrainer>();
+        // }
     }
 
     void Update()
@@ -37,18 +51,48 @@ public class CaptureArtifact : MonoBehaviour
     private void OnTriggerEnter(Collider collider) {
         if(collider.gameObject.name.Contains("fighter"))
         {
-            FighterStatus fighterStatus = collider.gameObject.GetComponent<FighterStatus>();
+            FighterAgent fighterAgent = collider.gameObject.GetComponent<FighterAgent>();
+
+            AgentStatus fighterStatus = collider.gameObject.GetComponent<AgentStatus>();
+            // FighterStatus fighterStatus = collider.gameObject.GetComponent<FighterStatus>();
             if(artifactTeam == fighterStatus.fighterTeam)
             {
-                transform.parent = collider.gameObject.transform.GetChild(1);
-                transform.localPosition = new Vector3(0,0,0);
-                fighterStatus.ArtifactCaptured();
+                if(transform.parent.name.Contains("teamBase"))
+                {
+                    fighterAgent.AgentCapturedArtifact();
+                    fighterAgent.MatchEnded();
+                }
+                // transform.parent = collider.gameObject.transform.GetChild(1);
+                // transform.localPosition = new Vector3(0,0,0);
+                // fighterStatus.ArtifactCaptured();
+
             }
             else if (fighterStatus.fighterCapturedArtifact)
             {
+                fighterAgent.AgentReturnedArtifact();
+
                 Debug.Log("Score!");
+
+                if(artifactTeam == 0)
+                {
+                    agentArenaManager.teamRedScore++;
+                    print("teamRedScore = " + agentArenaManager.teamRedScore);
+                }
+                else
+                {
+                    agentArenaManager.teamBlueScore++;
+                    print("teamBlueScore = " + agentArenaManager.teamBlueScore);
+                }
+
                 fighterStatus.ArtifactCaptured();
                 collider.transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();
+
+                if(agentArenaManager.teamRedScore == 1 || agentArenaManager.teamBlueScore == 1)
+                {
+                    agentArenaManager.teamRedScore = 0;
+                    agentArenaManager.teamBlueScore = 0;
+                    fighterAgent.MatchEnded();
+                }
             }
         }
     }
