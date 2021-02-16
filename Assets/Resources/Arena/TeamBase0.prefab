@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!135 &1604322312642359872
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168150696296696663}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1046278139648165542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168150696296696663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b8d2d1b31aec149b14a53d377f18f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifactInBase: 1
+  gameManager: {fileID: 0}
+  arenaManager: {fileID: 0}
+  agentArenaManager: {fileID: 0}
 --- !u!1 &1168150696332658133
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +249,7 @@ MonoBehaviour:
   height: 0.5
   verticalSpeed: 2
   rotateSpeed: 45
+  captureBase: {fileID: 1046278139648165542}
   gameManager: {fileID: 0}
   arenaManager: {fileID: 0}
   agentArenaManager: {fileID: 0}
@@ -567,6 +597,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d49afc1ade7ef224caf9704979bb1059, type: 3}
+--- !u!1 &1168150696296696663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: d49afc1ade7ef224caf9704979bb1059,
+    type: 3}
+  m_PrefabInstance: {fileID: 1168150696296599031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1168150696296732535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d49afc1ade7ef224caf9704979bb1059,

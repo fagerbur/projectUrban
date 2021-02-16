@@ -117,14 +117,18 @@ public class FighterAgent : Agent
 
     public void AgentCapturedArtifact()
     {
-        // artifactCaptured = true;
         AddReward(2.0f);
         print("Artifact Stolen: " + GetCumulativeReward());
     }
 
+    public void AgentDroppedArtifact()
+    {
+        AddReward(-1.0f);
+        print("Artifact Dropped: " + GetCumulativeReward());
+    }
+
     public void AgentReturnedArtifact()
     {
-        // artifactCaptured = false;
         AddReward(5.0f);
         print("Artifact Captured: " + GetCumulativeReward());
     }

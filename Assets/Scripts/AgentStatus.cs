@@ -39,6 +39,7 @@ public class AgentStatus : MonoBehaviour
         
         if(transform.GetChild(1).childCount > 0)
         {
+            fighterAgent.AgentDroppedArtifact();
             transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();
         }
 

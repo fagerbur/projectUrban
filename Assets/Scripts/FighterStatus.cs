@@ -23,14 +23,12 @@ public class FighterStatus : MonoBehaviour
         if(fighterHealth == 0)
         {
             fighterCapturedArtifact = false;
-            
             FighterRespawn();
         }
     }
 
     public void FighterRespawn()
     {
-
         Vector3 spawnLocation = arenaManager.SpawnLocation(fighterTeam);
         
         if(transform.GetChild(1).childCount > 0)
