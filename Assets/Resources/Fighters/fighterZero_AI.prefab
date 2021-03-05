@@ -5040,6 +5040,7 @@ GameObject:
   - component: {fileID: 973373938377156989}
   - component: {fileID: 7592824635421375978}
   - component: {fileID: 7420143406329609455}
+  - component: {fileID: 6449516847458004718}
   m_Layer: 0
   m_Name: fighterZero_AI
   m_TagString: Untagged
@@ -5123,7 +5124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 8
+    VectorObservationSize: 11
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -5134,7 +5135,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: FighterTraining
   TeamId: 0
   m_UseChildSensors: 1
@@ -5158,6 +5159,8 @@ MonoBehaviour:
   MaxStep: 2500
   EnemyArtifact: {fileID: 0}
   TeamBase: {fileID: 0}
+  CaptureArtifact: {fileID: 0}
+  ReturnArtifact: {fileID: 0}
   gameManager: {fileID: 0}
   moveSpeed: 2
   speed: 100
@@ -5221,6 +5224,19 @@ MonoBehaviour:
   NumStepsToRecord: 2000
   DemonstrationName: ArtifactCapture
   DemonstrationDirectory: B:\Source\projectUrban\Assets\Demonstration
+--- !u!114 &6449516847458004718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127846759987150404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42148add7e740fb4fad73d276a1cfb5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugCommandLineOverride: 
 --- !u!1 &9127846760286088976
 GameObject:
   m_ObjectHideFlags: 0
@@ -5429,7 +5445,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.6927021e+22, y: 0, z: 0, w: -5.338459}
+  m_BoundingSphereOverride: {x: 0, y: 6.7464e-41, z: 0, w: 1.2688885e+29}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -10275,7 +10291,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.6653e-41, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 6.886e-41, z: 0, w: 30.375}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

@@ -20,8 +20,10 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
         team0Spawns = new List<Transform>();
         team1Spawns = new List<Transform>();
 
-        Vector3 teamBase0Pos = new Vector3(185f, -7.45f, -100f);
-        Vector3 teamBase1Pos = new Vector3(-60f, -7.45f, 115f);
+        // Vector3 teamBase0Pos = new Vector3(185f, -7.45f, -100f);
+        Vector3 teamBase0Pos = new Vector3(155f, -7.45f, -55f);
+        Vector3 teamBase1Pos = new Vector3(0f, -7.45f, 75f);
+        // Vector3 teamBase1Pos = new Vector3(-60f, -7.45f, 115f);
 
         teamBase0 = Resources.Load("Arena/TeamBase0", typeof(GameObject));
         teamBase1 = Resources.Load("Arena/TeamBase1", typeof(GameObject));
@@ -102,7 +104,7 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
             {
                 randomSpawn = Random.Range(0,4);
                 isColliding = Physics.OverlapBox(team0Spawns[randomSpawn].position, new Vector3(2,4,2));
-                if(tries > 10) break;
+                if(tries > 4) break;
             }
 
             return new Vector3(team0Spawns[randomSpawn].position.x, 3, team0Spawns[randomSpawn].position.z);
@@ -115,7 +117,7 @@ public class ArenaManager_AgentTrainer : MonoBehaviour
                 randomSpawn = Random.Range(0,4);
                 isColliding = Physics.OverlapBox(team1Spawns[randomSpawn].position, new Vector3(2,4,2));
                 tries++;
-                if(tries > 10) break;
+                if(tries > 4) break;
             }
 
             return new Vector3(team1Spawns[randomSpawn].position.x, 3, team1Spawns[randomSpawn].position.z);

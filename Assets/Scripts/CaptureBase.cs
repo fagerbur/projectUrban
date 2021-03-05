@@ -53,7 +53,6 @@ public class CaptureBase : MonoBehaviour
                     print("teamBlueScore = " + agentArenaManager.teamBlueScore);
                 }
 
-                fighterStatus.ArtifactCaptured();
                 if(collider.transform.GetChild(1).childCount > 0)
                 {
                     collider.transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();

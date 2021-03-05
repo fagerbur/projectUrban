@@ -49,11 +49,6 @@ public class CaptureArtifact : MonoBehaviour
     {
         if(collider.gameObject.name.Contains("fighter"))
         {
-            if(fighterStatus != null)
-            {
-                fighterStatus.ArtifactCaptured();
-            }
-
             FighterAgent fighterAgent = collider.gameObject.GetComponent<FighterAgent>();
 
             fighterStatus = collider.gameObject.GetComponent<AgentStatus>();
@@ -68,7 +63,6 @@ public class CaptureArtifact : MonoBehaviour
                 captureBase.artifactInBase = false;
                 transform.parent = collider.gameObject.transform.GetChild(1);
                 transform.localPosition = new Vector3(0,0,0);
-                fighterStatus.ArtifactCaptured();
             }
         }
     }

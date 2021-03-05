@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using Unity.Barracuda;
 
 public class FighterAgent : Agent
 {
@@ -14,8 +15,10 @@ public class FighterAgent : Agent
     private FighterWeaponFire fighterWeaponFire;
     private float powerInput;
     private float turnInput;
-    private bool artifactCaptured;
     private CityGenerator cityGenerator;
+
+    public NNModel CaptureArtifact;
+    public NNModel ReturnArtifact;
 
     public GameObject gameManager;
     public float moveSpeed = 5;
@@ -25,6 +28,9 @@ public class FighterAgent : Agent
     public float hoverForce = 65f;
     public float hoverHeight = 3.5f;
 
+    private string fighterCaptureBehavior = "CaptureTraining";
+    private string fighterReturnBehavior = "ReturnTraining";
+
     void Start()
     {
         fighterBody = GetComponent<Rigidbody>();
@@ -32,26 +38,33 @@ public class FighterAgent : Agent
         fighterWeaponFire = GetComponentInChildren<FighterWeaponFire>();
         gameManager = GameObject.Find("GameManager");
         cityGenerator = gameManager.GetComponent<CityGenerator>();
+        SetModel(fighterCaptureBehavior, CaptureArtifact);
+    }
 
+    public override void Initialize() 
+    {
+        var modelOverrider = GetComponent<ModelOverrider>();
+        if (modelOverrider.HasOverrides)
+        {
+            CaptureArtifact = modelOverrider.GetModelForBehaviorName(fighterCaptureBehavior);
+            fighterCaptureBehavior = ModelOverrider.GetOverrideBehaviorName(fighterCaptureBehavior);
+
+            ReturnArtifact = modelOverrider.GetModelForBehaviorName(fighterReturnBehavior);
+            fighterReturnBehavior = ModelOverrider.GetOverrideBehaviorName(fighterReturnBehavior);
+        }    
     }
 
     public override void OnEpisodeBegin()
     {
         this.fighterBody.angularVelocity = Vector3.zero;
         this.fighterBody.velocity = Vector3.zero;
-        artifactCaptured = false;
+        SetModel(fighterCaptureBehavior, CaptureArtifact);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        if(!artifactCaptured)
-        {
-            sensor.AddObservation(EnemyArtifact.position);
-        }
-        else
-        {
-            sensor.AddObservation(TeamBase.position);
-        }
+        sensor.AddObservation(EnemyArtifact.position);
+        sensor.AddObservation(TeamBase.position);
 
         sensor.AddObservation(transform.position);
 
@@ -111,26 +124,47 @@ public class FighterAgent : Agent
 
     public void AgentDestroyedAgent()
     {
-        AddReward(0.5f);
+        AddReward(0.25f);
         print("Fighter Kill: " + GetCumulativeReward());
     }
 
     public void AgentCapturedArtifact()
     {
-        AddReward(2.0f);
+        AddReward(1.0f);
         print("Artifact Stolen: " + GetCumulativeReward());
+        foreach (Transform fighter in agentStatus.arenaManager.FighterArray)
+        {
+            if(fighter.GetComponent<AgentStatus>().fighterTeam == GetComponent<AgentStatus>().fighterTeam)
+            {
+                fighter.GetComponent<FighterAgent>().SetModel(fighterReturnBehavior, ReturnArtifact);
+            }
+        }
     }
 
     public void AgentDroppedArtifact()
     {
-        AddReward(-1.0f);
+        AddReward(-0.5f);
         print("Artifact Dropped: " + GetCumulativeReward());
+        foreach (Transform fighter in agentStatus.arenaManager.FighterArray)
+        {
+            if(fighter.GetComponent<AgentStatus>().fighterTeam == GetComponent<AgentStatus>().fighterTeam)
+            {
+                fighter.GetComponent<FighterAgent>().SetModel(fighterCaptureBehavior, CaptureArtifact);
+            }
+        }
     }
 
     public void AgentReturnedArtifact()
     {
-        AddReward(5.0f);
+        AddReward(3.0f);
         print("Artifact Captured: " + GetCumulativeReward());
+        foreach (Transform fighter in agentStatus.arenaManager.FighterArray)
+        {
+            if(fighter.GetComponent<AgentStatus>().fighterTeam == GetComponent<AgentStatus>().fighterTeam)
+            {
+                fighter.GetComponent<FighterAgent>().SetModel(fighterCaptureBehavior, CaptureArtifact);
+            }
+        }
     }
 
     public void MatchEnded()
@@ -144,8 +178,9 @@ public class FighterAgent : Agent
             fighter.GetComponent<Rigidbody>().velocity = Vector3.zero;
             fighter.transform.position = new Vector3(0,-100,0);
             fighter.GetComponent<AgentStatus>().FighterRespawn();
+            fighter.GetComponent<FighterAgent>().SetModel(fighterCaptureBehavior, CaptureArtifact);
         }
-        cityGenerator.SpawnAll();
+        //cityGenerator.SpawnAll();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

@@ -19,6 +19,18 @@ public class AgentStatus : MonoBehaviour
         fighterAgent = GetComponent<FighterAgent>();
     }
 
+    public void Update()
+    {
+        if(transform.GetChild(1).childCount > 0)
+        {
+            fighterCapturedArtifact = true;
+        }
+        else 
+        {
+            fighterCapturedArtifact = false;
+        }
+    }
+
     public void WeaponDamage(float fighterDamage)
     {
         fighterHealth -= fighterDamage;
@@ -33,6 +45,7 @@ public class AgentStatus : MonoBehaviour
 
     public void FighterRespawn()
     {
+        fighterCapturedArtifact = false;
         GetComponent<BehaviorParameters>().TeamId = fighterTeam;
 
         Vector3 spawnLocation = arenaManager.SpawnLocation(fighterTeam);
@@ -48,17 +61,5 @@ public class AgentStatus : MonoBehaviour
         fighterHealth = 3;
 
         Physics.SyncTransforms();
-    }
-
-    public void ArtifactCaptured()
-    {
-        if(fighterCapturedArtifact)
-        {
-            fighterCapturedArtifact = false;
-        }
-        else
-        {
-            fighterCapturedArtifact = true;
-        }
     }
 }

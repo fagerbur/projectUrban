@@ -12,7 +12,7 @@ public class CityGenerator : MonoBehaviour
 
     void Awake()
     {
-        SpawnAll();
+        //SpawnAll();
     }
 
     public void SpawnAll()
