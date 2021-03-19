@@ -58,7 +58,7 @@ public class CaptureBase : MonoBehaviour
                     collider.transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();
                 }
 
-                if(agentArenaManager.teamRedScore == 1 || agentArenaManager.teamBlueScore == 1)
+                if(agentArenaManager.teamRedScore == 3 || agentArenaManager.teamBlueScore == 3)
                 {
                     agentArenaManager.teamRedScore = 0;
                     agentArenaManager.teamBlueScore = 0;

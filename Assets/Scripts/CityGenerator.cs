@@ -12,7 +12,7 @@ public class CityGenerator : MonoBehaviour
 
     void Awake()
     {
-        //SpawnAll();
+        SpawnAll();
     }
 
     public void SpawnAll()
@@ -36,7 +36,7 @@ public class CityGenerator : MonoBehaviour
                 isColliding = Physics.OverlapBox(newLocation, buildingBounds);
                 collisionCount++;
 
-                if(collisionCount > 8)
+                if(collisionCount > 5)
                 {
                     isCityFull = true;
                     break;

@@ -180,7 +180,7 @@ public class FighterAgent : Agent
             fighter.GetComponent<AgentStatus>().FighterRespawn();
             fighter.GetComponent<FighterAgent>().SetModel(fighterCaptureBehavior, CaptureArtifact);
         }
-        //cityGenerator.SpawnAll();
+        cityGenerator.SpawnAll();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
