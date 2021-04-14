@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993135841466352301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.43984842, y: -0.78927207, z: 3.43168}
+  m_LocalPosition: {x: -0.43984842, y: -0.78927207, z: 4.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4854537085232807992}
@@ -142,10 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f98505b3afb8f4a982f85bc3a6abb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDamage: 1
   fireRate: 0.25
   fireRange: 50
-  weaponForce: 100
+  isFiring: 0
+  projectile: {fileID: 2824962353917920773, guid: 8f4d3830087b7b94cbc9089817fe4370,
+    type: 3}
 --- !u!1 &2504576692101704015
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504576692101704015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -8}
+  m_LocalPosition: {x: 0, y: 2, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9127846759987150408}
@@ -5203,8 +5204,8 @@ Rigidbody:
   m_GameObject: {fileID: 9127846759987150404}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 3
+  m_Drag: 2
+  m_AngularDrag: 4
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5222,7 +5223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008daa8c7cb10ea47bb91867661f5c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 200
   turnSpeed: 25
   hoverForce: 40
   hoverHeight: 3

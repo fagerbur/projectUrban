@@ -90,7 +90,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7
+  m_Radius: 9
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1369671265636544142
 MonoBehaviour:
@@ -107,7 +107,6 @@ MonoBehaviour:
   artifactInBase: 1
   gameManager: {fileID: 0}
   arenaManager: {fileID: 0}
-  agentArenaManager: {fileID: 0}
 --- !u!1 &1168150696332658133
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +330,6 @@ MonoBehaviour:
   captureBase: {fileID: 1369671265636544142}
   gameManager: {fileID: 0}
   arenaManager: {fileID: 0}
-  agentArenaManager: {fileID: 0}
 --- !u!1 &1168150697705250101
 GameObject:
   m_ObjectHideFlags: 0

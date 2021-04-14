@@ -10,13 +10,11 @@ public class CaptureArtifact : MonoBehaviour
     public CaptureBase captureBase;
     public GameObject gameManager;
     public ArenaManager arenaManager;
-    public ArenaManager_AgentTrainer agentArenaManager;
 
     private Vector3 origin;
     private Transform artifactParent;
     private int artifactTeam;
     private string teamName;
-    private AgentStatus fighterStatus;
 
     void Start()
     {
@@ -34,8 +32,7 @@ public class CaptureArtifact : MonoBehaviour
 
         gameManager = GameObject.Find("GameManager");
 
-        agentArenaManager = gameManager.GetComponent<ArenaManager_AgentTrainer>();
-        // agentArenaManager = gameManager.GetComponent<ArenaManager>();
+        arenaManager = gameManager.GetComponent<ArenaManager>();
     }
 
     void Update()
@@ -49,20 +46,17 @@ public class CaptureArtifact : MonoBehaviour
     {
         if(collider.gameObject.name.Contains("fighter"))
         {
-            FighterAgent fighterAgent = collider.gameObject.GetComponent<FighterAgent>();
-
-            fighterStatus = collider.gameObject.GetComponent<AgentStatus>();
-            // FighterStatus fighterStatus = collider.gameObject.GetComponent<FighterStatus>();
+            FighterStatus fighterStatus = collider.gameObject.GetComponent<FighterStatus>();
 
             if(artifactTeam == fighterStatus.fighterTeam)
             {
                 if(transform.parent.name.Contains("teamBase"))
                 {
-                    fighterAgent.AgentCapturedArtifact();
+                    arenaManager.SetAiTeammatesReturn(artifactTeam);
+                    captureBase.artifactInBase = false;
+                    transform.parent = collider.gameObject.transform.GetChild(1);
+                    transform.localPosition = new Vector3(0,0,0);
                 }
-                captureBase.artifactInBase = false;
-                transform.parent = collider.gameObject.transform.GetChild(1);
-                transform.localPosition = new Vector3(0,0,0);
             }
         }
     }

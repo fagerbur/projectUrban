@@ -10,7 +10,6 @@ public class CaptureBase : MonoBehaviour
     public bool artifactInBase = true;
     public GameObject gameManager;
     public ArenaManager arenaManager;
-    public ArenaManager_AgentTrainer agentArenaManager;
 
     void Start()
     {
@@ -25,32 +24,28 @@ public class CaptureBase : MonoBehaviour
         }
 
         gameManager = GameObject.Find("GameManager");
-        agentArenaManager = gameManager.GetComponent<ArenaManager_AgentTrainer>();
+        arenaManager = gameManager.GetComponent<ArenaManager>();
     }
 
     private void OnTriggerEnter(Collider collider) 
     {
         if(collider.gameObject.name.Contains("fighter"))
         {
-            FighterAgent fighterAgent = collider.gameObject.GetComponent<FighterAgent>();
-
-            AgentStatus fighterStatus = collider.gameObject.GetComponent<AgentStatus>();
+            FighterStatus fighterStatus = collider.gameObject.GetComponent<FighterStatus>();
 
             if (fighterStatus.fighterCapturedArtifact && artifactTeam != fighterStatus.fighterTeam)
             {
-                fighterAgent.AgentReturnedArtifact();
-
-                Debug.Log("Score!");
+                arenaManager.SetAiTeammatesCapture(fighterStatus.fighterTeam);
 
                 if(artifactTeam == 0)
                 {
-                    agentArenaManager.teamRedScore++;
-                    print("teamRedScore = " + agentArenaManager.teamRedScore);
+                    arenaManager.teamRedScore++;
+                    print("teamRedScore = " + arenaManager.teamRedScore);
                 }
                 else
                 {
-                    agentArenaManager.teamBlueScore++;
-                    print("teamBlueScore = " + agentArenaManager.teamBlueScore);
+                    arenaManager.teamBlueScore++;
+                    print("teamBlueScore = " + arenaManager.teamBlueScore);
                 }
 
                 if(collider.transform.GetChild(1).childCount > 0)
@@ -58,11 +53,11 @@ public class CaptureBase : MonoBehaviour
                     collider.transform.GetChild(1).transform.GetChild(0).GetComponent<CaptureArtifact>().RestoreOrigin();
                 }
 
-                if(agentArenaManager.teamRedScore == 3 || agentArenaManager.teamBlueScore == 3)
+                if(arenaManager.teamRedScore == 3 || arenaManager.teamBlueScore == 3)
                 {
-                    agentArenaManager.teamRedScore = 0;
-                    agentArenaManager.teamBlueScore = 0;
-                    fighterAgent.MatchEnded();
+                    print("Final Score: " + arenaManager.teamBlueScore + " Blue - " + arenaManager.teamRedScore + " Red");
+                    arenaManager.teamRedScore = 0;
+                    arenaManager.teamBlueScore = 0;
                 }
             }
         }

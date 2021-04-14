@@ -205,6 +205,6 @@ public class FighterAgent : Agent
         {   
             discreteActions[0] = 2;
         }
-        discreteActions[2] = Input.GetKey(KeyCode.X) ? 1 : 0;
+        discreteActions[2] = Input.GetKey(KeyCode.Space) ? 1 : 0;
     }
 }

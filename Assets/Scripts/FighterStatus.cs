@@ -16,19 +16,32 @@ public class FighterStatus : MonoBehaviour
         fighterTeam = Random.Range(0,1);
     }
 
+    public void Update()
+    {
+        if(transform.GetChild(1).childCount > 0 && !fighterCapturedArtifact)
+        {
+            fighterCapturedArtifact = true;
+        }
+        else 
+        {
+            fighterCapturedArtifact = false;
+        }
+    }
+
     public void WeaponDamage(float fighterDamage)
     {
         fighterHealth -= fighterDamage;
 
         if(fighterHealth == 0)
         {
-            fighterCapturedArtifact = false;
             FighterRespawn();
         }
     }
 
     public void FighterRespawn()
     {
+        fighterCapturedArtifact = false;
+
         Vector3 spawnLocation = arenaManager.SpawnLocation(fighterTeam);
         
         if(transform.GetChild(1).childCount > 0)
@@ -41,17 +54,5 @@ public class FighterStatus : MonoBehaviour
         fighterHealth = 3;
 
         Physics.SyncTransforms();
-    }
-
-    public void ArtifactCaptured()
-    {
-        if(fighterCapturedArtifact)
-        {
-            fighterCapturedArtifact = false;
-        }
-        else
-        {
-            fighterCapturedArtifact = true;
-        }
     }
 }

@@ -5,7 +5,7 @@ using Unity.MLAgents.Policies;
 
 public class AgentStatus : MonoBehaviour
 {
-    public ArenaManager_AgentTrainer arenaManager;
+    public ArenaManager arenaManager;
     public FighterAgent fighterAgent;
     public int fighterTeam = 1;
     public bool fighterCapturedArtifact = false;
@@ -14,7 +14,7 @@ public class AgentStatus : MonoBehaviour
 
     public void Awake() 
     {
-        arenaManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ArenaManager_AgentTrainer>();
+        arenaManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ArenaManager>();
         fighterTeam = Random.Range(0,1);
         fighterAgent = GetComponent<FighterAgent>();
     }
